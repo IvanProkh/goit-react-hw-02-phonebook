@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import { Formik, Form, Field } from 'formik';
-
-const initialValues = {
-  name: '',
-  number: '',
-};
+// import { Formik, Form, Field } from 'formik';
 
 class App extends Component {
   state = {
@@ -34,22 +29,45 @@ class App extends Component {
 
     const { name, number } = e.target.elements;
 
+    this.setState({
+      contacts: this.state.contacts.reduce.reduce(function (name, number) {
+        return { name, number };
+      }, []),
+    });
+
     console.log(name.value, number.value);
+    console.log(this.state.contacts);
 
     this.reset();
   };
+
+  // chandleSubmit = (values, ({resetForm})) => {
+  //   // e.preventDefault();
+
+  //   const { name, number } = e.target.elements;
+
+  //   console.log(name.value, number.value);
+
+  //   // this.reset();
+  // resetForm()
+  // };
 
   reset = () => {
     this.setState({ name: '', number: '' });
   };
 
   render() {
+    //     const initialValues = {
+    //       name: '',
+    //       number: '',
+    //     };
+    // initialValues = { initialValues };
     return (
-      <Formik initialValues={initialValues}>
+      <div>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="">Name</label>
-          <Field
+          <input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -61,7 +79,7 @@ class App extends Component {
           />
 
           <label htmlFor="">Number</label>
-          <Field
+          <input
             type="number"
             name="number"
             value={this.state.number}
@@ -70,12 +88,12 @@ class App extends Component {
           />
 
           <button type="submit">Add contact</button>
-        </Form>
+        </form>
         <h2>Contacts</h2>
         <ul>
           <li>contact</li>
         </ul>
-      </Formik>
+      </div>
     );
   }
 }
