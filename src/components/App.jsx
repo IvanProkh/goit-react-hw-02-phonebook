@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 // import { Formik, Form, Field } from 'formik';
+
+import PhoneBookForm from './PhoneBookForm/PhoneBookForm';
 
 class App extends Component {
   state = {
@@ -65,7 +67,8 @@ class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit}>
+        <PhoneBookForm />
+        {/* <form onSubmit={this.handleSubmit}>
           <label htmlFor="">Name</label>
           <input
             type="text"
@@ -88,7 +91,7 @@ class App extends Component {
           />
 
           <button type="submit">Add contact</button>
-        </form>
+        </form> */}
         <h2>Contacts</h2>
         <ul>
           <li>contact</li>
