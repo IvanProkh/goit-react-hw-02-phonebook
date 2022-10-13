@@ -19,7 +19,7 @@ const PhoneBookForm = props => {
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     // console.log(actions);
-
+    console.log(state);
     resetForm();
   };
   return (
@@ -47,7 +47,7 @@ const PhoneBookForm = props => {
         <Field
           type="tel"
           name="number"
-          pattern="[0-9]"
+          // pattern="[0-9]"
           title="Enter phone number in the format +38 (999) 999 99 99"
           // value={props.state.number}
           // onChange={handleChange}
