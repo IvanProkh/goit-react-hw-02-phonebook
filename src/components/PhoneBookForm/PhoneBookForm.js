@@ -11,7 +11,7 @@ let schema = yup.object().shape({
 
 // await schema.isValid(10);
 
-const initialValues = { name: 'a', number: '+380' };
+const initialValues = { name: '', number: '' };
 
 // {resetForm}
 
@@ -39,16 +39,22 @@ const PhoneBookForm = (Submit, props) => {
           // value={props.state.name}
           // onChange={handleChange}
           id={nanoid()}
+          placeholder="Name"
           required
         />
         <ErrorMessage name="name" component="div" />
         <br />
         <label htmlFor="">Number</label>
         <Field
-          type="number"
+          type="tel"
           name="number"
+          pattern="[0-9]"
+          title="Enter phone number in the format +38 (999) 999 99 99"
           // value={props.state.number}
           // onChange={handleChange}
+
+          id={nanoid()}
+          placeholder="+38 (999) 999 99 99"
           required
         />
         <ErrorMessage name="number" component="div" />
