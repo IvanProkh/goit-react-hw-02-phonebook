@@ -15,12 +15,11 @@ const initialValues = { name: '', number: '' };
 
 // {resetForm}
 
-const PhoneBookForm = (Submit, props) => {
+const PhoneBookForm = props => {
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     // console.log(actions);
 
-    Submit();
     resetForm();
   };
   return (
