@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { nanoid } from 'nanoid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -21,8 +22,9 @@ const initialValues = { name: '', number: '' };
 
 const PhoneBookForm = props => {
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    // console.log(actions);
+    console.log('values', values);
+    console.log('name', values.name);
+    console.log(props);
 
     resetForm();
     props.onSubmit(values.name, values.number);
@@ -46,8 +48,6 @@ const PhoneBookForm = props => {
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          // value={props.state.name}
-          // onChange={handleChange}
           id={nameId}
           placeholder="Name"
           required
@@ -59,10 +59,7 @@ const PhoneBookForm = props => {
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Enter phone number in the format +38 (999) 999 99 99"
-          // value={props.state.number}
-          // onChange={handleChange}
-
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           id={contactId}
           placeholder="+38 (999) 999 99 99"
           required
@@ -73,6 +70,16 @@ const PhoneBookForm = props => {
       </Form>
     </Formik>
   );
+};
+
+PhoneBookForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default PhoneBookForm;
