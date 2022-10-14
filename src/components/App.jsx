@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 // import { Formik, Form, Field } from 'formik';
 
@@ -26,22 +26,48 @@ class App extends Component {
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  addContact = ({ name, number }) => {
+    const contact = {
+      name,
+      number,
+      id: nanoid(),
+    };
 
-    const { name, number } = e.target.elements;
+    console.log('contact', contact);
 
-    this.setState({
-      contacts: this.state.contacts.reduce.reduce(function (name, number) {
-        return { name, number };
-      }, []),
+    this.setState(({ contacts }) => {
+      if (
+        contacts.find(
+          contact =>
+            contact.name.toLowerCase() === name.toLowerCase() ||
+            contact.number.toLowerCase() === number.toLowerCase()
+        )
+      ) {
+        return alert(`${name}/${number} is already in contacts!`);
+      }
+      return {
+        contacts: [contact, ...contacts],
+      };
     });
-
-    console.log(name.value, number.value);
-    console.log(this.state.contacts);
-
-    this.reset();
+    console.log('contacts', this.state.contacts);
   };
+
+  // handleSubmit = e => {
+  //   e.preventDefault();
+
+  //   const { name, number } = e.target.elements;
+
+  //   this.setState({
+  //     contacts: this.state.contacts.reduce.reduce(function (name, number) {
+  //       return { name, number };
+  //     }, []),
+  //   });
+
+  //   console.log(name.value, number.value);
+  //   console.log(this.state.contacts);
+
+  //   this.reset();
+  // };
 
   // chandleSubmit = (values, ({resetForm})) => {
   //   // e.preventDefault();
@@ -67,7 +93,7 @@ class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <PhoneBookForm />
+        <PhoneBookForm onSubmit={this.addContact} />
         {/* <form onSubmit={this.handleSubmit}>
           <label htmlFor="">Name</label>
           <input
