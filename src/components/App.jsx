@@ -13,19 +13,6 @@ class App extends Component {
     number: '',
   };
 
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleNumberChange = e => {
-    this.setState({
-      number: e.currentTarget.number,
-    });
-  };
-
   addContact = (name, number) => {
     const contact = {
       name,
@@ -63,6 +50,7 @@ class App extends Component {
       <div>
         <h1>Phonebook</h1>
         <PhoneBookForm onSubmit={this.addContact} />
+
         <h2>Contacts</h2>
         <ul>
           {this.state.contacts.map(({ name, number, id }) => (
