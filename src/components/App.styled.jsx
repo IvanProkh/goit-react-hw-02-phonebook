@@ -10,6 +10,8 @@ export const Box = styled.div`
   padding: 20px;
   margin: 20px;
 
+  background-color: white;
+
   border: 2px solid #4caf50;
   border-radius: 35px;
 
