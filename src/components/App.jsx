@@ -36,7 +36,6 @@ class App extends Component {
         contacts: [contact, ...contacts],
       };
     });
-    console.log('contacts', this.state.contacts);
   };
 
   deleteContact = contactId => {

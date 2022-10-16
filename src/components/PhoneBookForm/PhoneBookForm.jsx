@@ -18,14 +18,8 @@ let schema = yup.object().shape({
   number: yup.string().min(10).max(13).required(),
 });
 
-// const initialValues = { name: '', number: '' };
-
 const nameId = nanoid();
-console.log('~ nameId', nameId);
 const contactId = nanoid();
-console.log('~ contactId', contactId);
-
-// console.log(this.props);
 
 class PhoneBookForm extends Component {
   state = {
@@ -35,18 +29,18 @@ class PhoneBookForm extends Component {
 
   handleSubmit = (values, { resetForm }) => {
     console.log('values', values);
-    console.log('name', values.name);
 
     resetForm();
     this.props.onSubmit(values.name, values.number);
   };
 
   render() {
+    const { state, handleSubmit } = this;
     return (
       <Formik
-        initialValues={this.state}
+        initialValues={state}
         validationSchema={schema}
-        onSubmit={this.handleSubmit}
+        onSubmit={handleSubmit}
       >
         <Form>
           <label htmlFor="nameId">Name</label>
