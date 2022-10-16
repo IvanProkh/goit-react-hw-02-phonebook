@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Box } from './App.styled';
 
-// import { Formik, Form, Field } from 'formik';
-
-import PhoneBookForm from './PhoneBookForm/PhoneBookForm';
+import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
@@ -65,14 +64,14 @@ class App extends Component {
     const { filter } = this.state;
 
     return (
-      <div>
+      <Box>
         <h1>Phonebook</h1>
-        <PhoneBookForm onSubmit={addContact} />
+        <ContactForm onSubmit={addContact} />
 
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={handleChangeFilter} />
         <ContactList items={currentContacts()} deleteContact={deleteContact} />
-      </div>
+      </Box>
     );
   }
 }

@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { FormContact, Label, Input, Error, Button } from './ContactForm.styled';
 
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
-
-const Error = styled(ErrorMessage)`
-  color: red;
-  padding: 0;
-  margin: 0;
-  height: 20px;
-`;
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -21,7 +14,7 @@ let schema = yup.object().shape({
 const nameId = nanoid();
 const contactId = nanoid();
 
-class PhoneBookForm extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -42,21 +35,21 @@ class PhoneBookForm extends Component {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <label htmlFor="nameId">Name</label>
-          <Field
+        <FormContact>
+          <Label htmlFor="nameId">Name</Label>
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             id={nameId}
-            placeholder="Name"
+            placeholder="name"
             required
           />
           <Error name="name" component="div" />
-          <br />
-          <label htmlFor="contactId">Number</label>
-          <Field
+          {/* <br /> */}
+          <Label htmlFor="contactId">Number</Label>
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -66,15 +59,15 @@ class PhoneBookForm extends Component {
             required
           />
           <Error name="number" component="div" />
-          <br />
-          <button type="submit">Add contact</button>
-        </Form>
+          {/* <br /> */}
+          <Button type="submit">Add contact</Button>
+        </FormContact>
       </Formik>
     );
   }
 }
 
-PhoneBookForm.propTypes = {
+ContactForm.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
@@ -84,4 +77,4 @@ PhoneBookForm.propTypes = {
   ),
 };
 
-export default PhoneBookForm;
+export default ContactForm;

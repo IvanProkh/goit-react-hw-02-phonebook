@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 
+import { Form } from './Filter.styled';
+
 const Filter = ({ filter, onChange }) => {
   return (
-    <form>
-      Filter name
+    <Form>
+      <p>Filter name:</p>
       <input type="text" value={filter} onChange={onChange} />
-    </form>
+    </Form>
   );
 };
 
