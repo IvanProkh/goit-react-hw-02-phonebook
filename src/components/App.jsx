@@ -4,13 +4,13 @@ import { nanoid } from 'nanoid';
 // import { Formik, Form, Field } from 'formik';
 
 import PhoneBookForm from './PhoneBookForm/PhoneBookForm';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = (name, number) => {
@@ -45,23 +45,34 @@ class App extends Component {
     }));
   };
 
+  currentContacts = () => {
+    const { filter, contacts } = this.state;
+    return contacts.filter(contact => {
+      return (
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+        contact.number.toLowerCase().includes(filter.toLowerCase())
+      );
+    });
+  };
+
+  handleChangeFilter = e => {
+    console.log(e.currentTarget.value);
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   render() {
+    const { addContact, handleChangeFilter, currentContacts, deleteContact } =
+      this;
+    const { filter } = this.state;
+
     return (
       <div>
         <h1>Phonebook</h1>
-        <PhoneBookForm onSubmit={this.addContact} />
+        <PhoneBookForm onSubmit={addContact} />
 
         <h2>Contacts</h2>
-        <ul>
-          {this.state.contacts.map(({ name, number, id }) => (
-            <li key={id}>
-              {name}:{number}
-              <button type="button" onClick={() => this.deleteContact(id)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        <Filter filter={filter} onChange={handleChangeFilter} />
+        <ContactList items={currentContacts()} deleteContact={deleteContact} />
       </div>
     );
   }
