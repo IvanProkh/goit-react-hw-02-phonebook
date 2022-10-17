@@ -16,29 +16,52 @@ class App extends Component {
   };
 
   addContact = (name, number) => {
-    const contact = {
-      name,
-      number,
-      id: nanoid(),
-    };
+    // const sourceContacts = this.state.contacts;
 
-    console.log('contact', contact);
-
-    this.setState(({ contacts }) => {
-      if (
-        contacts.find(
-          contact =>
-            contact.name.toLowerCase() === name.toLowerCase() ||
-            contact.number.toLowerCase() === number.toLowerCase()
-        )
-      ) {
-        return alert(`${name}/${number} is already in contacts!`);
-      }
-      return {
-        contacts: [contact, ...contacts],
+    if (
+      this.state.contacts.find(
+        contact =>
+          contact.name.toLowerCase() === name.toLowerCase() ||
+          contact.number === number
+      )
+    ) {
+      return alert(`${name} / ${number} is already in contacts!`);
+    }
+    {
+      const contact = {
+        name,
+        number,
+        id: nanoid(),
       };
-    });
+      this.setState(({ contacts }) => {
+        return { contacts: [contact, ...contacts] };
+      });
+    }
   };
+
+  //   const contact = {
+  //     name,
+  //     number,
+  //     id: nanoid(),
+  //   };
+
+  //   console.log('contact', contact);
+
+  //   this.setState(({ contacts }) => {
+  //     if (
+  //       contacts.find(
+  //         contact =>
+  //           contact.name.toLowerCase() === name.toLowerCase() ||
+  //           contact.number.toLowerCase() === number.toLowerCase()
+  //       )
+  //     ) {
+  //       return alert(`${name}/${number} is already in contacts!`);
+  //     }
+  //     return {
+  //       contacts: [contact, ...contacts],
+  //     };
+  //   });
+  // };
 
   deleteContact = contactId => {
     this.setState(prevState => ({
