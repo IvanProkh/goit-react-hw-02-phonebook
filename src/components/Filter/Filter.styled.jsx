@@ -13,6 +13,7 @@ export const Form = styled.form`
 
   & input {
     padding-left: 10px;
-    border-radius: 35px;
+    /* border-radius: 35px; */
+    border: 1px solid black;
   }
 `;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Box } from './App.styled';
+import { Wrapper } from './App.styled';
 
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
@@ -8,7 +8,10 @@ import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Pavel Usov', number: '+380669998822' },
+      { id: 'id-2', name: 'Henri Kovil', number: '+380771117700' },
+    ],
     filter: '',
   };
 
@@ -64,14 +67,14 @@ class App extends Component {
     const { filter } = this.state;
 
     return (
-      <Box>
+      <Wrapper>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={addContact} />
 
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={handleChangeFilter} />
         <ContactList items={currentContacts()} deleteContact={deleteContact} />
-      </Box>
+      </Wrapper>
     );
   }
 }

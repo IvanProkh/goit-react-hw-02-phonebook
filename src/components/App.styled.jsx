@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@ export const Box = styled.div`
   background-color: white;
 
   border: 2px solid #4caf50;
-  border-radius: 35px;
+  /* border-radius: 35px; */
 
   box-shadow: #4caf50 0px 20px 30px -10px;
 

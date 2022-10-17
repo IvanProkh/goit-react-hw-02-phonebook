@@ -5,6 +5,7 @@ export const Contact = styled.ul`
 
   li {
     margin: 5px;
+    align-items: center;
   }
 
   span:nth-child(2) {
@@ -14,8 +15,10 @@ export const Contact = styled.ul`
   button {
     border: none;
     background-color: #4caf50;
-    padding: 3px;
+    padding: 5px;
+    margin-bottom: 1px;
     color: white;
+
     &:hover {
       background: green;
     }
